@@ -1,3 +1,6 @@
 site_name: Agent Tips
 theme:
   name: material
+nav:
+  - Home: index.md
+  - Multi-Agent Orchestration: multi-agent-orchestration.md
