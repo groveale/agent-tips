@@ -1,4 +1,9 @@
-autogen
-openai
+autogen>=0.2.0,<0.3.0
+openai>=1.1.0,<2.0.0
 # for potential web version
-fastapi
+fastapi>=0.105.0,<0.106.0
+uvicorn>=0.24.0,<0.25.0
+pydantic>=2.5.0,<3.0.0
+# for testing
+pytest>=7.4.0,<8.0.0
+pytest-cov>=4.1.0,<5.0.0

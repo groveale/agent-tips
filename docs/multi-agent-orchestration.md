@@ -43,8 +43,7 @@ Please note this is still a work-in-progress.
 |   |   |   |
 |  |   |  |
 |  |   |   |
-
-- Our own demos
+| [Multi-Agent Research Demo](https://github.com/groveale/agent-tips/tree/main/demos/multi-agent-research) (If you are looking at this from the temporary multi-agent branch: [Multi-Agent Research Demo](https://github.com/groveale/agent-tips/tree/multi-agent/demos/multi-agent-research)) | Practical demonstration of orchestrating three specialised agents (Research, Summariser, Recommender) to process research queries sequentially | Recommended for understanding basic multi-agent orchestration |
 
 ### 5. Implementation
 
