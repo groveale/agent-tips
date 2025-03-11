@@ -1,0 +1,4 @@
+autogen
+openai
+# for potential web version
+fastapi
