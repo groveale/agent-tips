@@ -1,3 +1,4 @@
+# Python
 __pycache__/
 *.py[cod]
 *$py.class
@@ -19,35 +20,43 @@ wheels/
 .installed.cfg
 *.egg
 
+# Virtual Environment
 venv/
 env/
 ENV/
 .env
 .venv
 
+# IDE files
 .idea/
 .vscode/
 *.swp
 *.swo
 .DS_Store
 
+# Logs
 *.log
 logs/
 
+# Local configuration
 .env
 .env.*
 !.env.example
 
+# OpenAI API keys and other secrets
 *_key.txt
 *_keys.txt
 *_secrets.txt
 *.pem
 credentials.json
 
+# Autogen-specific
 .autogen/
 .cache/
 conversation_history/
 
+# MkDocs
 site/
 
+# Jupyter Notebooks (if used)
 .ipynb_checkpoints

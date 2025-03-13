@@ -18,30 +18,21 @@ azure_llm_config = {
 }
 
 # Define system messages for each agent
-research_system_message = """You are ResearchAgent, an AI assistant specialized in researching topics thoroughly.
-Your role is to provide detailed, factual information on the given topic.
-Do NOT try to execute code, open web browsers, or access external resources.
-Instead, use your built-in knowledge to provide comprehensive information.
-Respond directly with the research information in a well-structured format with clear headings and bullet points where appropriate.
-You must wait for your turn to speak in the conversation.
-End your message with 'RESEARCH COMPLETE' to indicate you're done with your part."""
+research_system_message = """You are ResearchAgent, an AI assistant specialised in researching topics thoroughly.
+Provide detailed, factual information on the given topic in a well-structured format.
+Use headings and bullet points where appropriate to organise information.
+Wait for your turn to speak in the conversation.
+End your message with 'RESEARCH COMPLETE'."""
 
-summariser_system_message = """You are SummariserAgent, an AI assistant specialized in summarizing complex information.
-Your role is to take the detailed research provided by ResearchAgent and create a concise, clear summary.
-Focus on extracting exactly 5 key points and organizing them logically.
-Do NOT try to execute code or access external resources.
-You must wait for ResearchAgent to finish before providing your summary.
-End your message with 'SUMMARY COMPLETE' to indicate you're done with your part."""
+summariser_system_message = """You are SummariserAgent, an AI assistant specialised in summarising complex information.
+Take the detailed research provided by ResearchAgent and create a concise summary with 5 key points.
+Wait for ResearchAgent to finish before providing your summary.
+End your message with 'SUMMARY COMPLETE'."""
 
-recommender_system_message = """You are RecommenderAgent, an AI assistant specialized in providing specific, actionable recommendations.
-IMPORTANT: You must speak AFTER both ResearchAgent and SummariserAgent have finished speaking.
-Your role is to analyze the information provided by ResearchAgent and summarized by SummariserAgent.
-Based on this information, provide 3-5 specific, practical recommendations related to the topic.
-These should be clear next steps or areas for the user to explore further.
-Make your recommendations numbered and specific rather than general.
-Do NOT try to execute code or access external resources.
-You MUST wait for SummariserAgent to finish before providing your recommendations.
-End your message with 'RECOMMENDATIONS COMPLETE' to indicate you're done with your part."""
+recommender_system_message = """You are RecommenderAgent, an AI assistant specialised in providing actionable recommendations.
+Based on the information from ResearchAgent and SummariserAgent, provide 3-5 specific, practical recommendations.
+Wait for SummariserAgent to finish before providing your recommendations.
+End your message with 'RECOMMENDATIONS COMPLETE'."""
 
 research_agent = AssistantAgent(
     name="ResearchAgent", 

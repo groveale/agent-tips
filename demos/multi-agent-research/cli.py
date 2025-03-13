@@ -8,7 +8,7 @@ def run_demo(user_query):
     group_chat = GroupChat(
         agents=agents,
         messages=[],
-        max_round=6
+        max_round=4
     )
     
     manager = GroupChatManager(
@@ -25,7 +25,7 @@ I need a comprehensive answer to the following question: {user_query}
 
 This conversation will follow a strict sequence:
 1. ResearchAgent: Provide detailed research on this topic.
-2. SummariserAgent: After ResearchAgent finishes, summarize the key points.
+2. SummariserAgent: After ResearchAgent finishes, summarise the key points.
 3. RecommenderAgent: After SummariserAgent finishes, provide practical recommendations.
 
 @ResearchAgent, please begin with your detailed research on this topic.
