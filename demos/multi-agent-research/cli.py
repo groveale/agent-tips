@@ -31,25 +31,8 @@ This conversation will follow a strict sequence:
 @ResearchAgent, please begin with your detailed research on this topic.
         """
     )
-
-    messages = group_chat.messages
     
     print("\n--- TASK COMPLETE ---\n")
-    print("### CONVERSATION SUMMARY ###\n")
-    
-    # Filter out system messages and focus on agent responses
-    agent_messages = []
-    for message in messages:
-        if message.get("content") and message.get("name") in ["ResearchAgent", "SummariserAgent", "RecommenderAgent", "User"]:
-            agent_messages.append(message)
-    
-    for message in agent_messages:
-        sender = message["name"]
-        content = message["content"]
-        print(f"\n{sender}:\n{content}\n")
-        print("-" * 80)
-    
-    print("\n### END OF CONVERSATION ###")
 
 
 if __name__ == "__main__":

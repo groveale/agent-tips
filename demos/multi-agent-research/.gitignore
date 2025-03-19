@@ -53,6 +53,9 @@ credentials.json
 # Autogen-specific
 .autogen/
 .cache/
+**/.cache/
+.cache
+**/.cache
 conversation_history/
 
 # MkDocs

@@ -7,7 +7,7 @@ azure_openai_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT")
 azure_openai_deployment = os.getenv("AZURE_OPENAI_DEPLOYMENT")
 
 if not azure_openai_key or not azure_openai_endpoint or not azure_openai_deployment:
-    raise ValueError("Set the environment variables. You need an API key, an endpoint and a deployment name. Check the demo documentation for details. \nMake sure you included the \"s when setting the environment variables.\n")
+    raise ValueError("Set the environment variables. You need an API key, an endpoint and a deployment name. Check the demo documentation for details. \nMake sure you included the \"s when setting the environment variables if needed.\n")
 
 azure_llm_config = {
     "api_key": azure_openai_key,
