@@ -17,7 +17,7 @@ azure_llm_config = {
     "model": azure_openai_deployment 
 }
 
-# Define system messages for each agent
+# Define system messages for each agent - you can modify this part to experiment with the agent behaviour
 research_system_message = """You are ResearchAgent, an AI assistant specialised in researching topics thoroughly.
 Provide detailed, factual information on the given topic in a well-structured format.
 Use headings and bullet points where appropriate to organise information.
@@ -52,8 +52,6 @@ recommender_agent = AssistantAgent(
     system_message=recommender_system_message
 )
 
-# This acts as an entry point for user interactions
-# Configure the user proxy with termination messages and no input
 user_proxy = UserProxyAgent(
     name="User", 
     human_input_mode="NEVER", 
