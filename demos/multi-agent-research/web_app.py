@@ -12,12 +12,10 @@ tasks = {}
 
 @app.route('/')
 def index():
-    """Render the main page"""
     return render_template('index.html')
 
 @app.route('/submit', methods=['POST'])
 def submit_query():
-    """Submit a query to the agents and return a task ID"""
     query = request.json.get('query')
     if not query:
         return jsonify({'error': 'No query provided'}), 400
@@ -29,30 +27,14 @@ def submit_query():
         'results': None
     }
     
-    # Start processing in a background thread
     thread = threading.Thread(target=process_query, args=(task_id, query))
     thread.daemon = True
     thread.start()
     
     return jsonify({'taskId': task_id})
 
-def process_query(task_id: str, query: str) -> None:
-    """Process the query with agents in a background thread"""
-    try:
-        results = run_agents(query)
-        tasks[task_id].update({
-            'status': 'completed',
-            'results': results
-        })
-    except Exception as e:
-        tasks[task_id].update({
-            'status': 'failed',
-            'error': str(e)
-        })
-
 @app.route('/status/<task_id>', methods=['GET'])
 def get_status(task_id: str):
-    """Check the status of a task"""
     if task_id not in tasks:
         return jsonify({'error': 'Task not found'}), 404
     
@@ -69,6 +51,19 @@ def get_status(task_id: str):
     
     return jsonify(response)
 
+def process_query(task_id: str, query: str) -> None:
+    try:
+        results = run_agents(query)
+        tasks[task_id].update({
+            'status': 'completed',
+            'results': results
+        })
+    except Exception as e:
+        tasks[task_id].update({
+            'status': 'failed',
+            'error': str(e)
+        })
+
 if __name__ == '__main__':
     os.makedirs('templates', exist_ok=True)
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(host='127.0.0.1', port=5000)
