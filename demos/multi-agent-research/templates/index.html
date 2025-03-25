@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multi-Agent Research</title>
+    <title>Study Assistant</title>
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <style>
         body {
@@ -113,34 +113,51 @@
             60% { content: '...'; }
             80%, 100% { content: ''; }
         }
+        .flashcard {
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+        .flashcard .question {
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        .flashcard .answer {
+            color: #34495e;
+            padding-left: 15px;
+            border-left: 3px solid #3498db;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Multi-Agent Research System</h1>
+        <h1>Study Assistant</h1>
         
         <div class="input-group">
-            <input type="text" id="query-input" placeholder="Enter your research question...">
-            <button id="submit-btn">Research</button>
+            <input type="text" id="query-input" placeholder="What topic would you like to learn about?">
+            <button id="submit-btn">Study</button>
         </div>
         
-        <div id="status" class="status">Ready to research</div>
+        <div id="status" class="status">Ready to help you learn</div>
         <div id="loading" class="loading">Processing your query</div>
         
         <div class="agent-container">
             <div class="agent-box">
-                <h2>Research Agent</h2>
+                <h2>Research</h2>
                 <div id="research-content" class="agent-content"></div>
             </div>
             
             <div class="agent-box">
-                <h2>Summary Agent</h2>
-                <div id="summary-content" class="agent-content"></div>
+                <h2>Study Flashcards</h2>
+                <div id="flashcards-content" class="agent-content"></div>
             </div>
             
             <div class="agent-box">
-                <h2>Recommendations Agent</h2>
-                <div id="recommendations-content" class="agent-content"></div>
+                <h2>Next Steps</h2>
+                <div id="next-steps-content" class="agent-content"></div>
             </div>
         </div>
     </div>
@@ -154,8 +171,8 @@
                 status: document.getElementById('status'),
                 loading: document.getElementById('loading'),
                 research: document.getElementById('research-content'),
-                summary: document.getElementById('summary-content'),
-                recommendations: document.getElementById('recommendations-content')
+                flashcards: document.getElementById('flashcards-content'),
+                nextSteps: document.getElementById('next-steps-content')
             };
             
             let currentTaskId = null;
@@ -180,7 +197,7 @@
             function submitQuery() {
                 const query = elements.queryInput.value.trim();
                 if (!query) {
-                    alert('Please enter a query');
+                    alert('Please enter a topic to study');
                     return;
                 }
                 
@@ -226,29 +243,29 @@
                 if (results.research) {
                     elements.research.innerHTML = marked.parse(results.research);
                 }
-                if (results.summary) {
-                    elements.summary.innerHTML = marked.parse(results.summary);
+                if (results.flashcards) {
+                    elements.flashcards.innerHTML = marked.parse(results.flashcards);
                 }
-                if (results.recommendations) {
-                    elements.recommendations.innerHTML = marked.parse(results.recommendations);
+                if (results.next_steps) {
+                    elements.nextSteps.innerHTML = marked.parse(results.next_steps);
                 }
             }
             
             function clearResults() {
                 elements.research.innerHTML = '';
-                elements.summary.innerHTML = '';
-                elements.recommendations.innerHTML = '';
+                elements.flashcards.innerHTML = '';
+                elements.nextSteps.innerHTML = '';
             }
             
             function updateUI(state) {
                 switch (state) {
                     case 'processing':
-                        elements.status.textContent = 'Processing query...';
+                        elements.status.textContent = 'Processing your study request...';
                         elements.loading.style.display = 'block';
                         elements.submitBtn.disabled = true;
                         break;
                     case 'completed':
-                        elements.status.textContent = 'Research completed!';
+                        elements.status.textContent = 'Study materials ready!';
                         elements.loading.style.display = 'none';
                         elements.submitBtn.disabled = false;
                         break;
