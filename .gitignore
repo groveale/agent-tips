@@ -1,1 +1,42 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+venv/
+env/
+ENV/
+.env
+.venv
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Caches and temporary files
+.cache/
+**/.cache/
+.cache
+**/.cache
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Secret files
+*_key.txt
+*_keys.txt
+*_secrets.txt
+*.pem
+credentials.json
+
 /site
