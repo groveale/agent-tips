@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Helper - AutoGen Multi-Agent Orchestration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta name="description" content="Generate study materials with AI-powered agents">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-brain"></i> Study Helper</h1>
+            <p>Powered by AutoGen Multi-Agent Orchestration</p>
+        </header>
+
+        <main>
+            <div class="form-container">
+                <h2>What would you like to study?</h2>
+                <form id="study-form">
+                    <div class="form-group">
+                        <label for="topic">Enter a study topic:</label>
+                        <input type="text" id="topic" name="topic" placeholder="e.g., Quantum Physics, Machine Learning, Renaissance Art" required>
+                    </div>
+                    <button type="submit" id="submit-btn" class="btn-accent"><i class="fas fa-rocket"></i> Generate Study Materials</button>
+                </form>
+                <div id="loading" class="hidden">
+                    <p>Our AI agents are working on your request...</p>
+                    <div class="loading-progress">
+                        <div class="progress-bar">
+                            <div class="progress-fill"></div>
+                        </div>
+                    </div>
+                    <div class="coffee-container">
+                        <i class="fas fa-mug-hot coffee-icon"></i>
+                        <p class="coffee-text">Grab a coffee while you wait</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="results" class="hidden">
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="research"><i class="fas fa-search"></i> Research</button>
+                    <button class="tab-btn" data-tab="flashcards"><i class="fas fa-clone"></i> Flashcards</button>
+                    <button class="tab-btn" data-tab="study-guide"><i class="fas fa-book"></i> Study Guide</button>
+                </div>
+                
+                <div class="tab-content">
+                    <div id="research-tab" class="tab-pane active">
+                        <h3><i class="fas fa-search"></i> Research Results</h3>
+                        <div id="research-content" class="content"></div>
+                    </div>
+                    
+                    <div id="flashcards-tab" class="tab-pane">
+                        <h3><i class="fas fa-clone"></i> Flashcards</h3>
+                        <p class="tab-description">Click on any card to reveal the answer.</p>
+                        <div id="flashcards-container" class="flashcards-container"></div>
+                    </div>
+                    
+                    <div id="study-guide-tab" class="tab-pane">
+                        <h3><i class="fas fa-book"></i> Study Guide</h3>
+                        <div id="study-guide-content" class="content"></div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>
+                <i class="fas fa-code"></i> Developed for demonstration purposes. 
+                Uses Azure OpenAI API and AutoGen Multi-Agent Framework.
+            </p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
