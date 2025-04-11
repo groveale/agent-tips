@@ -116,8 +116,40 @@ document.addEventListener('DOMContentLoaded', function() {
         totalFlashcards = 0;
         viewedFlashcards = 0;
         
-        // Display research content
-        researchContent.innerHTML = data.research ? formatText(data.research) : '<p>No research data available.</p>';
+        // Display research content - extract only research portion
+        if (data.research) {
+            let researchContentData = data.research;
+            
+            // Check if the content contains agent prefixes and clean it
+            if (researchContentData.includes('Research_Agent:')) {
+                // Extract only the actual research content
+                const researchPrefix = 'Research_Agent:';
+                let startIndex = researchContentData.indexOf(researchPrefix);
+                
+                if (startIndex !== -1) {
+                    // Get content after the prefix
+                    startIndex += researchPrefix.length;
+                    
+                    // Check if there are other agent markers in the content
+                    const nextAgentIndex = Math.min(
+                        researchContentData.indexOf('FlashCard_Agent:', startIndex) !== -1 ? 
+                            researchContentData.indexOf('FlashCard_Agent:', startIndex) : Infinity,
+                        researchContentData.indexOf('Recommendation_Agent:', startIndex) !== -1 ? 
+                            researchContentData.indexOf('Recommendation_Agent:', startIndex) : Infinity
+                    );
+                    
+                    if (nextAgentIndex !== Infinity) {
+                        researchContentData = researchContentData.substring(startIndex, nextAgentIndex).trim();
+                    } else {
+                        researchContentData = researchContentData.substring(startIndex).trim();
+                    }
+                }
+            }
+            
+            researchContent.innerHTML = formatText(researchContentData);
+        } else {
+            researchContent.innerHTML = '<p>No research data available.</p>';
+        }
         
         // Display flashcards
         flashcardsContainer.innerHTML = '';
@@ -131,15 +163,71 @@ document.addEventListener('DOMContentLoaded', function() {
                     }, index * 150);
                 });
             } else {
-                // If flashcards is a string
-                flashcardsContainer.innerHTML = formatText(data.flashcards);
+                // If flashcards is a string, clean and display it
+                let flashcardContent = data.flashcards;
+                
+                // Extract only the FlashCard_Agent portion if needed
+                if (flashcardContent.includes('FlashCard_Agent:')) {
+                    const flashcardPrefix = 'FlashCard_Agent:';
+                    let startIndex = flashcardContent.indexOf(flashcardPrefix);
+                    
+                    if (startIndex !== -1) {
+                        startIndex += flashcardPrefix.length;
+                        
+                        // Find where the next agent content might begin
+                        const nextAgentIndex = Math.min(
+                            flashcardContent.indexOf('Research_Agent:', startIndex) !== -1 ? 
+                                flashcardContent.indexOf('Research_Agent:', startIndex) : Infinity,
+                            flashcardContent.indexOf('Recommendation_Agent:', startIndex) !== -1 ? 
+                                flashcardContent.indexOf('Recommendation_Agent:', startIndex) : Infinity
+                        );
+                        
+                        if (nextAgentIndex !== Infinity) {
+                            flashcardContent = flashcardContent.substring(startIndex, nextAgentIndex).trim();
+                        } else {
+                            flashcardContent = flashcardContent.substring(startIndex).trim();
+                        }
+                    }
+                }
+                
+                flashcardsContainer.innerHTML = formatText(flashcardContent);
             }
         } else {
             flashcardsContainer.innerHTML = '<p>No flashcard data available.</p>';
         }
         
         // Display study guide
-        studyGuideContent.innerHTML = data.study_guide ? formatText(data.study_guide) : '<p>No study guide available.</p>';
+        if (data.study_guide) {
+            let studyGuideData = data.study_guide;
+            
+            // Clean the study guide content
+            if (studyGuideData.includes('Recommendation_Agent:')) {
+                const studyGuidePrefix = 'Recommendation_Agent:';
+                let startIndex = studyGuideData.indexOf(studyGuidePrefix);
+                
+                if (startIndex !== -1) {
+                    startIndex += studyGuidePrefix.length;
+                    
+                    // Find where the next agent content might begin
+                    const nextAgentIndex = Math.min(
+                        studyGuideData.indexOf('Research_Agent:', startIndex) !== -1 ? 
+                            studyGuideData.indexOf('Research_Agent:', startIndex) : Infinity,
+                        studyGuideData.indexOf('FlashCard_Agent:', startIndex) !== -1 ? 
+                            studyGuideData.indexOf('FlashCard_Agent:', startIndex) : Infinity
+                    );
+                    
+                    if (nextAgentIndex !== Infinity) {
+                        studyGuideData = studyGuideData.substring(startIndex, nextAgentIndex).trim();
+                    } else {
+                        studyGuideData = studyGuideData.substring(startIndex).trim();
+                    }
+                }
+            }
+            
+            studyGuideContent.innerHTML = formatText(studyGuideData);
+        } else {
+            studyGuideContent.innerHTML = '<p>No study guide available.</p>';
+        }
         
         // Hide loading, show results
         loadingSection.classList.add('hidden');

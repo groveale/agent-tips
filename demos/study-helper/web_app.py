@@ -53,6 +53,8 @@ def create_agents(study_topic):
         llm_config=llm_config,
     )
     
+    # Be careful about changing code_execution_config to True - check the README for more information about how to do this safely.
+
     user_proxy = autogen.UserProxyAgent(
         name="User_Proxy",
         human_input_mode="NEVER",

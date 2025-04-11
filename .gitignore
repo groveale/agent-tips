@@ -39,4 +39,22 @@ dist/
 *.pem
 credentials.json
 
+**/*.env
+**/.env*
+**/secrets.*
+**/*secret*
+**/*key*
+**/*token*
+**/*.pfx
+**/*.p12
+**/*.jks
+**/*.keystore
+**/*credential*
+**/*password*
+**/*config*local*
+**/local_config*
+
+demos/study-helper/.cache/
+
+# MkDocs build directory
 /site
