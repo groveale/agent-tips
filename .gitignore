@@ -55,3 +55,6 @@ credentials.json
 **/local_config*
 
 demos/study-helper/.cache/
+
+# MkDocs build directory
+/site
