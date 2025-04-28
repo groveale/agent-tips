@@ -70,7 +70,7 @@ export AZURE_OPENAI_DEPLOYMENT=your_deployment_name_here
 
 ## Running the App (the fun part)
 
-1. Make sure you're in the root folder and then run:
+1. Make sure you're in the study-helper folder and then run:
    ```
    python web_app.py
    ```
