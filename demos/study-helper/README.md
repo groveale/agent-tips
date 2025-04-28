@@ -10,6 +10,8 @@ StudyHelper uses AutoGen to create a group chat between AI agents.
 
 The front end then displays the information.
 
+[You can view a demo + code walkthrough (of the back-end part) here! Hosted on YouTube.](https://www.youtube.com/watch?v=o0LieVpvAHE)
+
 ## Prerequisites
 
 - Python 3.8 or higher
@@ -23,11 +25,15 @@ My recommendation, if you're not confident, is to use Visual Studio Code as it's
 
 1. Clone the repository:
    ```
-   git clone <repository-url>
-   cd study-helper
+   git clone https://github.com/groveale/agent-tips.git
    ```
 
-2. Install the required dependencies:
+2. Move into the study-helper demo folder:
+   ```
+   cd demos/study-helper
+   ```
+  
+4. Install the required dependencies:
    ```
    pip install -r requirements.txt
    ```
